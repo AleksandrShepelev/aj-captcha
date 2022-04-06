@@ -209,7 +209,8 @@ module.exports.create = function (captchaLength = 3, countWrongAnswer = 5, captc
         }
     }
 
-    const wrongAnswers = generateWrongAnswers(captchaAnswerText, captchaText, countWrongAnswer);
+    let wrongAnswers = generateWrongAnswers(captchaAnswerText, captchaText, countWrongAnswer - 1);
+    wrongAnswers.push(captchaWrongText.join(''));
 
     const svgStart = `<svg width="${Config.captchaWidth}" height="${Config.captchaHeight}" viewBox="0 0 ${Config.captchaWidth} ${Config.captchaHeight}">`;
     const svgEnd = '</svg>';
