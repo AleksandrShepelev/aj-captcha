@@ -104,7 +104,7 @@ function generateCaptchaColors(colors = [Options.config.colors.dark, Options.con
     return retColors;
 }
 
-function generateWrongAnswers(rightAnswer, captchaText, answersCount) {
+function generateWrongAnswers(rightAnswer, captchaText, wrongText, answersCount) {
 
     const Config = Options.config;
 
@@ -134,14 +134,10 @@ function generateWrongAnswers(rightAnswer, captchaText, answersCount) {
                 tmpAnswer.push(captchaText[ind][0]);
             }
         }
-        while (wrongAnswers.includes(tmpAnswer));
+        while (wrongAnswers.includes(tmpAnswer.join('')) || tmpAnswer.join('') === wrongText.join(''));
 
-        wrongAnswers.push(tmpAnswer);
+        wrongAnswers.push(tmpAnswer.join(''));
 
-    }
-
-    for (let i=0; i<wrongAnswers.length; i++) {
-        wrongAnswers[i] = wrongAnswers[i].join('');
     }
 
     return wrongAnswers;
@@ -209,7 +205,7 @@ module.exports.create = function (captchaLength = 3, countWrongAnswer = 5, captc
         }
     }
 
-    let wrongAnswers = generateWrongAnswers(captchaAnswerText, captchaText, countWrongAnswer - 1);
+    let wrongAnswers = generateWrongAnswers(captchaAnswerText, captchaText, captchaWrongText,countWrongAnswer - 1);
     wrongAnswers.push(captchaWrongText.join(''));
 
     const svgStart = `<svg width="${Config.captchaWidth}" height="${Config.captchaHeight}" viewBox="0 0 ${Config.captchaWidth} ${Config.captchaHeight}">`;
