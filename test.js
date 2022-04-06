@@ -7,7 +7,7 @@ try {
 
     var startTime = performance.now();
 
-    const res = aj_captcha.create(3);
+    const res = aj_captcha.create(4);
 
     Console.log(performance.now() - startTime);
 

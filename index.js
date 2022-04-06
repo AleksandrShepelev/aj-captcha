@@ -160,6 +160,16 @@ module.exports.create = function (captchaLength = 3, countWrongAnswer = 5, captc
     const captchaColors = generateCaptchaColors();
     const captchaText = [];
 
+    const fontPath = path.join(__dirname, `./fonts/${captchaFont}`);
+    Config.font = opentype.loadSync(fontPath);
+    Config.fontScale = Config.fontSize / Config.font.unitsPerEm;
+
+    const glyph = Config.font.charToGlyph('0');
+    Config.fontWidth = glyph.advanceWidth ? glyph.advanceWidth * Config.fontScale : 0;
+
+    Config.captchaWidth = Config.indent * 2 + Config.fontWidth * captchaLength * 2 + Config.letterSpacing * (captchaLength * 2 - 1);
+    Config.captchaHeight = Config.captchaWidth / Config.ratio;
+
     for (let i=0; i<captchaLength * 2; i++) {
         captchaText.push([null, null]);
     }
@@ -200,15 +210,6 @@ module.exports.create = function (captchaLength = 3, countWrongAnswer = 5, captc
     }
 
     const wrongAnswers = generateWrongAnswers(captchaAnswerText, captchaText, countWrongAnswer);
-
-    const fontPath = path.join(__dirname, `./fonts/${captchaFont}`);
-    Config.font = opentype.loadSync(fontPath);
-    Config.fontScale = Config.fontSize / Config.font.unitsPerEm;
-
-    const glyph = Config.font.charToGlyph('0');
-    Config.fontWidth = glyph.advanceWidth ? glyph.advanceWidth * Config.fontScale : 0;
-
-    Config.captchaWidth = Config.indent * 2 + Config.fontWidth * captchaLength * 2 + Config.letterSpacing * (captchaLength * 2 - 1);
 
     const svgStart = `<svg width="${Config.captchaWidth}" height="${Config.captchaHeight}" viewBox="0 0 ${Config.captchaWidth} ${Config.captchaHeight}">`;
     const svgEnd = '</svg>';
