@@ -122,6 +122,9 @@ function generateWrongAnswers(rightAnswer, captchaText, wrongText, answersCount)
         let tmpAnswer = [];
 
         do {
+
+            tmpAnswer = [];
+
             for (let q=0; q<answerLength; q++) {
 
                 let ind = 0;
@@ -134,9 +137,13 @@ function generateWrongAnswers(rightAnswer, captchaText, wrongText, answersCount)
                 tmpAnswer.push(captchaText[ind][0]);
             }
         }
-        while (wrongAnswers.includes(tmpAnswer.join('')) || tmpAnswer.join('') === wrongText.join(''));
+        while (wrongAnswers.includes(tmpAnswer.join('')) || tmpAnswer.join('') === wrongText.join('') || tmpAnswer.join('') === rightAnswer.join(''));
 
         wrongAnswers.push(tmpAnswer.join(''));
+
+        if (tmpAnswer.join('').length > 4) {
+            console.log(tmpAnswer.join(''));
+        }
 
     }
 

@@ -9,14 +9,19 @@ try {
         const res = aj_captcha.create(4, 7);
 
         const set = new Set();
+        set.add(res.rightAnswer);
 
         for (const answer of res.wrongAnswers) {
             set.add(answer);
+
+            /*if (answer.length > 4) {
+                console.log("suka");
+            }*/
         }
 
-        if (set.size < 7) {
-            console.log(res.wrongAnswers);
+        if (set.size < 8) {
             console.log(res.rightAnswer);
+            console.log(res.wrongAnswers);
             console.log('PIZDEC');
         }
     }
