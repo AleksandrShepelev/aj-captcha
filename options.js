@@ -27,7 +27,7 @@ module.exports.config = {
         white: "#FFFFFF"
     },
 
-    ratio: 3,
+    ratio: 1.3,
 
     captchaWidth: null,
     captchaHeight: null,
@@ -39,7 +39,7 @@ module.exports.config = {
 
     fontWidth: null,
 
-    indent: 20,
+    indent: 100,
 
     maxDeg: 20
 };

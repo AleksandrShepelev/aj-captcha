@@ -5,28 +5,7 @@ try {
     const sharp = require("sharp");
     const aj_captcha = require("./index.js");
 
-    for (let i = 0; i< 10000; i++) {
-        const res = aj_captcha.create(4, 7);
-
-        const set = new Set();
-        set.add(res.rightAnswer);
-
-        for (const answer of res.wrongAnswers) {
-            set.add(answer);
-
-            /*if (answer.length > 4) {
-                console.log("suka");
-            }*/
-        }
-
-        if (set.size < 8) {
-            console.log(res.rightAnswer);
-            console.log(res.wrongAnswers);
-            console.log('PIZDEC');
-        }
-    }
-
-    /*var startTime = performance.now();
+    var startTime = performance.now();
 
     const res = aj_captcha.create(4, 7);
 
@@ -36,7 +15,7 @@ try {
 
     sharp(Buffer.from(res.data))
         .png()
-        .toFile("cap.png");*/
+        .toFile("cap.png");
 
 } catch(e) {
     console.log(e);
