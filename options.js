@@ -32,7 +32,7 @@ module.exports.config = {
     captchaWidth: null,
     captchaHeight: null,
 
-    fontSize: 70,
+    fontSize: 80,
     font: null,
     fontScale: null,
     letterSpacing: 10,
