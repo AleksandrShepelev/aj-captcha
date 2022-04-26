@@ -27,19 +27,19 @@ module.exports.config = {
         white: "#FFFFFF"
     },
 
-    ratio: 1.3,
+    ratio: 1.5,
 
     captchaWidth: null,
     captchaHeight: null,
 
-    fontSize: 80,
+    fontSize: 200,
     font: null,
     fontScale: null,
-    letterSpacing: 10,
+    letterSpacing: 30,
 
     fontWidth: null,
 
-    indent: 100,
+    indent: 150,
 
     maxDeg: 20
 };
